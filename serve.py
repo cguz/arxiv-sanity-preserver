@@ -12,7 +12,7 @@ from hashlib import md5
 from flask import Flask, request, session, url_for, redirect, \
      render_template, abort, g, flash, _app_ctx_stack
 from flask_limiter import Limiter
-from werkzeug import check_password_hash, generate_password_hash
+from werkzeug.security import check_password_hash, generate_password_hash
 import pymongo
 
 from utils import safe_pickle_dump, strip_version, isvalidid, Config
@@ -21,8 +21,8 @@ from utils import safe_pickle_dump, strip_version, isvalidid, Config
 # -----------------------------------------------------------------------------
 
 # database configuration
-if os.path.isfile('secret_key.txt'):
-  SECRET_KEY = open('secret_key.txt', 'r').read()
+if os.path.isfile('data/secret_key.txt'):
+  SECRET_KEY = open('data/secret_key.txt', 'r').read()
 else:
   SECRET_KEY = 'devkey, should be in a file'
 app = Flask(__name__)
