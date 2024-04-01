@@ -11,7 +11,7 @@ else
   SUSER=root
 fi
 
-python /usr/src/app/fetch_papers.py --max-index=10 --results-per-iteration=10
+python /usr/src/app/fetch_papers.py --max-index=10 --results-per-iteration=20
 python /usr/src/app/download_pdfs.py
 python /usr/src/app/parse_pdf_to_text.py
 python /usr/src/app/thumb_pdf.py

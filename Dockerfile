@@ -1,15 +1,15 @@
-FROM python:3.8-buster
+FROM python:3.10-bullseye
 
-RUN apt-get update -y && apt-get install -y poppler-utils imagemagick libopenblas-dev ghostscript sqlite3 sudo gnupg vim
+RUN apt update -y && apt upgrade -y && apt install -y poppler-utils imagemagick libopenblas-dev ghostscript sqlite3 sudo gnupg vim
 
-#RUN python3 -m pip3 install --upgrade pip3
+RUN python -m pip install --upgrade pip
 
 # install MongoDB
 RUN wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add -
 RUN touch /etc/apt/sources.list.d/mongodb-org-5.0.list &&\
     echo "deb http://repo.mongodb.org/apt/debian buster/mongodb-org/5.0 main" | sudo tee /etc/apt/sources.list.d/mongodb-org-5.0.list &&\
-    apt-get update &&\
-    apt-get install -y mongodb-org
+    apt update &&\
+    apt install -y mongodb-org
 RUN mkdir -p /data/db
 
 RUN mkdir -p /usr/src/app
